@@ -1,0 +1,66 @@
+<?php
+/**
+ * Single Product Thumbnails
+ *
+ * This template can be overridden by copying it to yourtheme/woocommerce/single-product/product-thumbnails.php.
+ *
+ * HOWEVER, on occasion WooCommerce will need to update template files and you
+ * (the theme developer) will need to copy the new files to your theme to
+ * maintain compatibility. We try to do this as little as possible, but it does
+ * happen. When this occurs the version of the template file will be bumped and
+ * the readme will list any important changes.
+ *
+ * @see 	    https://docs.woocommerce.com/document/template-structure/
+ * @author 		WooThemes
+ * @package 	WooCommerce/Templates
+ * @version     3.3.5
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+global $post, $product, $woocommerce;
+
+$attachment_ids = $product->get_gallery_image_ids();
+
+if ( $attachment_ids ) {
+	$loop 		= 0;
+	$columns 	= apply_filters( 'woocommerce_product_thumbnails_columns', 3 );
+
+	foreach ( $attachment_ids as $attachment_id ) {
+									
+		$wrapClasses = array('quickshop-thumb-'.$columns.'col', 'wd_quickshop_thumb');
+		if (!wp_is_mobile()) {
+			$wrapClasses[] = 'pop_cloud_zoom cloud-zoom-gallery';
+		}else{
+			$wrapClasses[] = 'hidden';
+		}
+
+		$classes = array('attachment-shop_thumbnail');
+
+		if ( $loop == 0 || $loop % $columns == 0 )
+			$wrapClasses[] = 'first';
+			
+		if( $loop == 0 ) {
+			$wrapClasses[] = 'firstThumb';
+		}
+
+		if ( ( $loop + 1 ) % $columns == 0 )
+			$wrapClasses[] = 'last';
+		
+		$image_class = esc_attr( implode( ' ', $classes ) );
+		
+		$lrgImg = wp_get_attachment_image_src($attachment_id, 'shop_single');
+		$lrgImg_full = wp_get_attachment_image_src($attachment_id, 'full');
+											
+		if (wp_is_mobile()) {
+			echo '<div class="item"><a href="'.$lrgImg_full[0].'" rel="lightbox[wd-single-product-image-lightbox]" class="'.esc_attr( implode( ' ', $wrapClasses ) ).'">'.wp_get_attachment_image( $attachment_id, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ), false, array('class' => $image_class) ).'</a></div>';
+		}else{
+			echo '<div class="item"><a href="'.$lrgImg_full[0].'" rel="useZoom: \'wd-zoom\', smallImage: \''. $lrgImg[0] .'\'"  class="'.esc_attr( implode( ' ', $wrapClasses ) ).'">'.wp_get_attachment_image( $attachment_id, apply_filters( 'single_product_small_thumbnail_size', 'shop_thumbnail' ), false, array('class' => $image_class) ).'</a></div>';
+		}
+		
+
+		$loop++;
+	}
+}

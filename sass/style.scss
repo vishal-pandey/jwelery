@@ -1,0 +1,179 @@
+/*
+Theme Name: wdjewelry
+Theme URI: /wdjewelry/
+Author:  Wpdance team
+Author URI: http://wpdance.com/
+Description: our default theme lets you create a strongest website with many features.
+Version: 3.0.2
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: one-column, two-columns, right-sidebar, accessibility-ready, custom-background, custom-colors, custom-header, custom-menu, editor-style, featured-images, flexible-header, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
+Text Domain: wdjewelry
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+// Core variables and mixins
+@import "core/custom";
+@import "core/mixins";
+@import "core/unit_css";
+
+// Reset and elements
+@import "elements/00_normalize";
+@import "elements/01_buttons";
+@import "elements/02_inputs";
+@import "elements/03_forms";
+@import "elements/04_tables";
+@import "elements/05_breadcrumbs";
+@import "elements/06_carousel";
+@import "elements/07_owl_slider";
+@import "elements/08_pager";
+@import "elements/09_close";
+@import "elements/10_responsive_utilities";
+@import "elements/11_revolution";
+@import "elements/12_extra_class";
+@import "elements/13_back_to_top";
+@import "elements/14_loading";
+@import "elements/15_pretty_photo";
+
+// Layout 
+@import "layout/0_layout.scss";
+@import "layout/1_header.scss";
+@import "layout/2_content.scss";
+@import "layout/3_footer.scss";
+@import "layout/4_sidebar.scss";
+@import "layout/5_shop.scss";
+@import "layout/6_blog.scss";
+@import "layout/7_page.scss";
+
+// Shortcode
+@import "shortcode/0_wordpress_sc.scss";
+@import "shortcode/1_visual_composer_sc.scss";
+@import "shortcode/2_ts_composer_sc.scss";
+@import "shortcode/3_woo_sc.scss";
+@import "shortcode/4_wpdance_sc.scss";
+
+// Widget 
+@import "widget/0_wordpress_wg.scss";
+@import "widget/_1_woo_wg.scss";
+@import "widget/_2_wpdance_wg.scss";
+
+// Page 
+@import "page/_404.scss";
+@import "page/_contact.scss";
+@import "page/_search.scss";
+
+@media screen and (max-width: 600px) {
+	html body {position:static;}
+}
+
+.rtl{
+	.ubermenu-sub-indicators .ubermenu-item-level-0.ubermenu-has-submenu-drop>.ubermenu-target:after{
+		left:0!important;
+	}
+	.ubermenu .hot-label .ubermenu-target-description, .ubermenu .featured .ubermenu-target-description{
+		right:auto;
+		left:10px;
+	}
+	.header-top-left,.header-top-right{
+		.widget-woocommerce-currency-switcher{
+			padding-right:0;
+			padding-left:20px;
+			&:before{
+				right:auto; left:0;
+			}
+		}
+		.dd-pointer{
+			right:auto;
+			left:0;
+		}
+	}
+	.cart_content .wd_mini_cart > span{
+		padding-right:0;
+		padding-left:15px;
+		&:after{
+			right:auto;
+			left:0;
+		}
+	}
+	.recent_blogs_horizontal_container .rb_item .rb_row_right{
+		padding-left:0;
+		padding-right:25px;
+	}
+	.owl-wrapper{
+		float:left;
+	}
+	
+	.widget_subscriptions form .button{
+		left:0;
+		right:auto;
+	}
+	.widget_nav_menu a{
+		padding-right:0!important;
+		padding-left:20px!important;
+	}
+	.woocommerce{
+		.woocommerce-product-rating .star-rating{
+			float:right;
+		}
+		.star-rating{
+			span,&:before{
+				left:auto; right:0; float:right;
+			}
+			span{ width:53px!important;}
+		} 
+		ul.product_list_widget li{
+			padding-right:20px;
+			padding-left:100px;
+		}
+	} 
+	&.woocommerce,&.woocommerce-page{
+		div.product{
+			.compare-button,.yith-wcwl-add-to-wishlist{
+				float:right;
+				padding-right:24px;
+				margin-right:0;
+				margin-left:24px;
+				padding-left:0;
+				&:before{
+					right:0;
+					left:auto;
+				}
+			}
+		}
+	}
+	.site-header .breadcrumbs a{
+		float:right;
+	}
+	.widget_search button{
+		right:auto; left:0;
+	}
+	#comments ol li .fn,
+	&.single-post .wd_content_single .comment-blog li .comment-body > div:first-child{
+		float:right;
+		margin-right:0;
+		margin-left:20px;
+	}
+	&.single-post{
+		.wd_content_single .content{
+			text-align:right;
+		}
+		.wd_content_single .social_icon > div{
+			float:right;
+			margin-right:0;
+			margin-left:10px;
+		}
+	} 
+	input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], input[type="tel"], input[type="number"], input[type="search"], input textarea,textarea{
+		text-align:right;
+	}
+	div.ts-team2 > div:first-child{
+		float:right;
+		margin-right:60px;
+		margin-left:0;	
+	}
+	div.ts-team2 div.ts-team2-content{
+		padding-left:20px;
+	}
+} 
